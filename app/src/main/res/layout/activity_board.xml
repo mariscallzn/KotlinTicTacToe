@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_board"
     android:layout_width="match_parent"
@@ -8,10 +9,116 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.mariizcal.tictactoe.BoardActivity">
+    tools:context="com.mariizcal.tictactoe.board.BoardActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="170dp"
+        android:background="@color/colorAccent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="170dp"
+        android:background="@color/colorAccent" />
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:layout_marginBottom="56dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/colorAccent" />
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/colorAccent" />
+
+    <!--ROW 1-->
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/section_top_start"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="top|start"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/section_top_middle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/section_top_end"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal|end|top"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <!--ROW 2-->
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/section_middle_start"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_vertical|start"
+        android:layout_marginStart="12dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/section_middle_middle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/section_middle_end"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal|end|center_vertical"
+        android:layout_marginEnd="12dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <!--ROW 3-->
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/section_bottom_start"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginBottom="70dp"
+        android:layout_marginStart="12dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/section_bottom_middle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="70dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/section_bottom_end"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal|end|bottom"
+        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="12dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+</FrameLayout>

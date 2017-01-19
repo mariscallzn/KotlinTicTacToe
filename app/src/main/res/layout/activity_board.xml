@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#FFFCF3"
     tools:context="com.mariizcal.tictactoe.board.BoardActivity">
 
     <View
@@ -15,14 +16,14 @@
         android:layout_height="3dp"
         android:layout_gravity="top"
         android:layout_marginTop="170dp"
-        android:background="@color/colorAccent" />
+        android:background="#D8D8D8" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_gravity="bottom"
         android:layout_marginBottom="170dp"
-        android:background="@color/colorAccent" />
+        android:background="#D8D8D8" />
 
     <View
         android:layout_width="3dp"
@@ -31,7 +32,7 @@
         android:layout_marginBottom="56dp"
         android:layout_marginStart="106dp"
         android:layout_marginTop="56dp"
-        android:background="@color/colorAccent" />
+        android:background="#D8D8D8" />
 
     <View
         android:layout_width="3dp"
@@ -40,7 +41,7 @@
         android:layout_marginBottom="56dp"
         android:layout_marginEnd="106dp"
         android:layout_marginTop="56dp"
-        android:background="@color/colorAccent" />
+        android:background="#D8D8D8" />
 
     <!--ROW 1-->
     <android.support.v7.widget.AppCompatImageView

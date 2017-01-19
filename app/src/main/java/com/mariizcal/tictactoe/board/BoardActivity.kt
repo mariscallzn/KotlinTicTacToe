@@ -208,6 +208,7 @@ class BoardActivity : AppCompatActivity(), BoardPresenter.BoardView {
                 .setNegativeButton("NO", { dialogInterface, which ->
                     finish()
                 })
+                .setCancelable(false)
                 .show()
     }
 
@@ -243,6 +244,7 @@ class BoardActivity : AppCompatActivity(), BoardPresenter.BoardView {
                 .setNegativeButton("   O   ", { dialogInterface, which ->
                     presenter.selectPlayer(Seed.NOUGHT)
                 })
+                .setCancelable(false)
                 .show()
     }
 }

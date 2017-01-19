@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_board"
     android:layout_width="match_parent"
@@ -50,16 +49,14 @@
         android:layout_height="80dp"
         android:layout_gravity="top|start"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="70dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_marginTop="70dp" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/section_top_middle"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal|top"
-        android:layout_marginTop="70dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_marginTop="70dp" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/section_top_end"
@@ -67,8 +64,7 @@
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal|end|top"
         android:layout_marginEnd="12dp"
-        android:layout_marginTop="70dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_marginTop="70dp" />
 
     <!--ROW 2-->
     <android.support.v7.widget.AppCompatImageView
@@ -76,23 +72,20 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center_vertical|start"
-        android:layout_marginStart="12dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_marginStart="12dp" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/section_middle_middle"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_gravity="center"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_gravity="center" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/section_middle_end"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal|end|center_vertical"
-        android:layout_marginEnd="12dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_marginEnd="12dp" />
 
     <!--ROW 3-->
     <android.support.v7.widget.AppCompatImageView
@@ -101,16 +94,14 @@
         android:layout_height="80dp"
         android:layout_gravity="bottom|start"
         android:layout_marginBottom="70dp"
-        android:layout_marginStart="12dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_marginStart="12dp" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/section_bottom_middle"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="70dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_marginBottom="70dp" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/section_bottom_end"
@@ -118,7 +109,6 @@
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal|end|bottom"
         android:layout_marginBottom="70dp"
-        android:layout_marginEnd="12dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:layout_marginEnd="12dp" />
 
 </FrameLayout>

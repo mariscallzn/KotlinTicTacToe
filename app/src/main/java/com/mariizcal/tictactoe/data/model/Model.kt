@@ -34,6 +34,11 @@ class Board {
     var currentRow = 0
     var currentCol = 0
 
+    val winningPatterns: Array<Int> = arrayOf(
+            0b111000000, 0b000111000, 0b000000111, // rows
+            0b100100100, 0b010010010, 0b001001001, // cols
+            0b100010001, 0b001010100)               // diagonals
+
 
     init {
         for (row in 0 until ROW) {
@@ -60,24 +65,21 @@ class Board {
         return true
     }
 
-    fun hasWon(theSeed: Seed): Boolean {
-        return (cells[currentRow][0]?.content == theSeed
-                && cells[currentRow][1]?.content == theSeed
-                && cells[currentRow][2]?.content == theSeed
-                ||
-                cells[currentCol][0]?.content == theSeed
-                        && cells[currentCol][1]?.content == theSeed
-                        && cells[currentCol][2]?.content == theSeed
-                ||
-                currentCol == currentRow
-                        && cells[0][0]?.content == theSeed
-                        && cells[1][1]?.content == theSeed
-                        && cells[2][2]?.content == theSeed
-                ||
-                currentRow + currentCol == 2
-                        && cells[0][2]?.content == theSeed
-                        && cells[1][1]?.content == theSeed
-                        && cells[2][0]?.content == theSeed)
+    fun hasWon(thePlayer: Seed): Boolean {
+        var pattern = 0b000000000
+        for (row in 0 until ROW) {
+            (0 until COL)
+                    .asSequence()
+                    .filter { cells[row][it]?.content == thePlayer }
+                    .forEach { pattern = pattern or (1 shl (row * COL + it)) }
+        }
+
+        winningPatterns
+                .asSequence()
+                .filter { (pattern and it) == it }
+                .forEach { return true }
+
+        return false
     }
 }
 
@@ -109,7 +111,7 @@ abstract class AIPLayer(board: Board) {
 class AIPlayerMinimax(board: Board) : AIPLayer(board) {
 
     override fun move(): Array<Int>? {
-        val result = minimax(2, mySeed)
+        val result = minimax(7, mySeed)
         return arrayOf(result[1], result[2])
     }
 

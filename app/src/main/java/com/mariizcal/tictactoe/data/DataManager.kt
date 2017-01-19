@@ -1,9 +1,6 @@
 package com.mariizcal.tictactoe.data
 
-import com.mariizcal.tictactoe.data.model.AIPlayerMinimax
-import com.mariizcal.tictactoe.data.model.Board
-import com.mariizcal.tictactoe.data.model.GameState
-import com.mariizcal.tictactoe.data.model.Seed
+import com.mariizcal.tictactoe.data.model.*
 
 /**
  * Created by andresmariscal on 14/01/17.
@@ -12,9 +9,11 @@ import com.mariizcal.tictactoe.data.model.Seed
 class DataManager {
 
     var currentState = GameState.PLAYING
-    var currentPlayer = Seed.CROSS
+    var currentPlayer = Seed.CROSS //Cross is the default
 
     val board = Board()
+
+    var gameStatusListener: OnGameStatusChange? = null
 
     fun initGame() {
         board.init()
@@ -23,7 +22,6 @@ class DataManager {
     }
 
     fun updateGame(player: Seed) {
-        //TODO Here we need some callback to notify whether the gameState for each move
         if (board.hasWon(player)) {
             currentState = when (player) {
                 Seed.CROSS -> GameState.CROSS_WON
@@ -32,19 +30,33 @@ class DataManager {
         } else if (board.isDraw()) {
             currentState = GameState.DRAW
         }
+
+        gameStatusListener?.onStatusChange(currentState)
     }
 
-    fun playerMove(player: Seed, row: Int, col: Int) {
+    fun playerMove(player: Seed, row: Int, col: Int) : Cell? {
         currentPlayer = player
         if (row >= 0 && row < board.ROW && col >= 0 && col < board.COL
                 && board.cells[row][col]?.content == Seed.EMPTY) {
             board.cells[row][col]?.content = player
             board.currentRow = row
             board.currentCol = col
-            //TODO Reload Tic Tac Toe
-        } else {
-            //TODO Notify error
-        }
 
+            val cell = Cell(row, col)
+            cell.content = player
+
+            updateGame(player)
+            return cell
+        } else {
+            return null
+        }
+    }
+
+    fun setOnGameStatusChangeListener(listener: OnGameStatusChange?){
+        this.gameStatusListener = listener
+    }
+
+    public interface OnGameStatusChange {
+        fun onStatusChange(gameState: GameState)
     }
 }

@@ -41,11 +41,13 @@ class BoardPresenter(viewScreen: BoardView) {
     fun computerMove() {
         val moves = computer.move()
         view.reloadBoard(dataManager.playerMove(computer.mySeed, moves!![0], moves[1]))
+        view.onComputerMoved()
     }
 
     interface BoardView {
         fun reloadBoard(cell: Cell?)
         fun gameStatus(gameState: GameState)
         fun initGame()
+        fun onComputerMoved()
     }
 }

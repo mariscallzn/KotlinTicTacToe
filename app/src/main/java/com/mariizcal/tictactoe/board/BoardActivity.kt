@@ -7,9 +7,13 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
+import android.widget.TextView
 import com.mariizcal.tictactoe.R
 import com.mariizcal.tictactoe.data.model.Cell
 import com.mariizcal.tictactoe.data.model.GameState
@@ -20,11 +24,32 @@ import kotlinx.android.synthetic.main.activity_board.*
 class BoardActivity : AppCompatActivity(), BoardPresenter.BoardView {
     val presenter = BoardPresenter(this)
 
+    var loading: AlertDialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        choseSeed()
+        loading = AlertDialog.Builder(this).create()
+        val loadingMsg = TextView(this)
+        loadingMsg.gravity = Gravity.CENTER_HORIZONTAL
+        loadingMsg.textSize = resources.getDimension(R.dimen.emoji_thinking_size)
+        loadingMsg.text = String(Character.toChars(0x1F914))
+        loading?.setView(loadingMsg)
+        loading?.setCancelable(false)
+
+
+        if (intent.extras != null) {
+            when (intent.extras["side"]) {
+                1 -> presenter.selectPlayer(Seed.CROSS)
+                2 -> presenter.selectPlayer(Seed.NOUGHT)
+                else -> finish()
+            }
+        } else {
+            finish()
+        }
 
         section_top_start.setOnClickListener(onClick)
         section_top_middle.setOnClickListener(onClick)
@@ -39,6 +64,7 @@ class BoardActivity : AppCompatActivity(), BoardPresenter.BoardView {
 
     val onClick = View.OnClickListener({
         view ->
+        loading?.show()
         when (view.id) {
             section_top_start.id -> {
                 Log.w("onClick", "section_top_start")
@@ -189,62 +215,64 @@ class BoardActivity : AppCompatActivity(), BoardPresenter.BoardView {
     }
 
     override fun gameStatus(gameState: GameState) {
+        var result: String? = null
+        var emoji: Int? = 0x0
+        //
         when (gameState) {
             GameState.PLAYING -> return
-            GameState.DRAW ->
+            GameState.DRAW ->{
+                result = "It's a draw, play again?"
+                emoji = 0x1f644
                 Snackbar.make(activity_board, "It's a Draw!", Snackbar.LENGTH_LONG).show()
+            }
             GameState.CROSS_WON -> {
+                result = "Cross has won!, play again?"
+                emoji = 0x1F60E
                 Snackbar.make(activity_board, "cross has won!", Snackbar.LENGTH_LONG).show()
             }
             GameState.NOUGHT_WON -> {
+                result = "Nought has won!, play again?"
+                emoji = 0x1F60E
                 Snackbar.make(activity_board, "nought has won!", Snackbar.LENGTH_LONG).show()
             }
         }
 
-        AlertDialog.Builder(this).setMessage("Restart?")
-                .setPositiveButton("YES ", { dialogInterface, which ->
-                    restartGame()
-                })
-                .setNegativeButton("NO", { dialogInterface, which ->
-                    finish()
-                })
-                .setCancelable(false)
-                .show()
+        val restartDialog =  AlertDialog.Builder(this).create()
+        restartDialog.setCancelable(false)
+
+        val restartText = TextView(this)
+        restartText.gravity = Gravity.CENTER_HORIZONTAL
+        restartText.textSize = resources.getDimension(R.dimen.emoji_thinking_size)
+        restartText.text = String(Character.toChars(emoji))
+
+        restartDialog.setView(restartText)
+        restartDialog.setTitle(result)
+        restartDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES" , {
+            dialogInterface, which ->
+            finish()
+        })
+        restartDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", {
+            dialogInterface, which ->
+            //TODO SHOW INFO
+        })
+
+        restartDialog.show()
     }
 
-    private fun restartGame() {
-        section_top_start.setImageDrawable(null)
-        section_top_middle.setImageDrawable(null)
-        section_top_end.setImageDrawable(null)
-        section_middle_start.setImageDrawable(null)
-        section_middle_middle.setImageDrawable(null)
-        section_middle_end.setImageDrawable(null)
-        section_bottom_start.setImageDrawable(null)
-        section_bottom_middle.setImageDrawable(null)
-        section_bottom_end.setImageDrawable(null)
-
-        section_top_start.isEnabled = true
-        section_top_middle.isEnabled = true
-        section_top_end.isEnabled = true
-        section_middle_start.isEnabled = true
-        section_middle_middle.isEnabled = true
-        section_middle_end.isEnabled = true
-        section_bottom_start.isEnabled = true
-        section_bottom_middle.isEnabled = true
-        section_bottom_end.isEnabled = true
-
-        choseSeed()
+    override fun onComputerMoved() {
+        loading?.dismiss()
     }
 
-    fun choseSeed() {
-        AlertDialog.Builder(this).setMessage("Select a player, X always starts")
-                .setPositiveButton("   X   ", { dialogInterface, which ->
-                    presenter.selectPlayer(Seed.CROSS)
-                })
-                .setNegativeButton("   O   ", { dialogInterface, which ->
-                    presenter.selectPlayer(Seed.NOUGHT)
-                })
-                .setCancelable(false)
-                .show()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.options, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.info -> Log.d("", "")
+            R.id.restart -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

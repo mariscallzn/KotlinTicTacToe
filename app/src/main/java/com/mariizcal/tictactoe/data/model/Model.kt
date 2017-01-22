@@ -13,13 +13,8 @@ enum class GameState {
     PLAYING, DRAW, CROSS_WON, NOUGHT_WON
 }
 
-class Cell(var row: Int, var col: Int) {
-    var content: Seed
-
-    init {
-        content = Seed.EMPTY
-    }
-
+class Cell(val row: Int, val col: Int) {
+    var content: Seed = Seed.EMPTY
     fun clear() {
         content = Seed.EMPTY
     }
@@ -83,7 +78,8 @@ class Board {
     }
 }
 
-abstract class AIPLayer(board: Board) {
+class AIPlayerMinimax(board: Board) {
+
     val ROW = board.ROW
     val COL = board.COL
 
@@ -105,12 +101,7 @@ abstract class AIPLayer(board: Board) {
         }
     }
 
-    abstract fun move(): Array<Int>?
-}
-
-class AIPlayerMinimax(board: Board) : AIPLayer(board) {
-
-    override fun move(): Array<Int>? {
+    fun move(): Array<Int>? {
         val result = minimax(7, mySeed)
         return arrayOf(result[1], result[2])
     }

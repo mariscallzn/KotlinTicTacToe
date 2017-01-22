@@ -1,5 +1,6 @@
 package com.mariizcal.tictactoe.board
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -15,6 +16,7 @@ import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.widget.TextView
 import com.mariizcal.tictactoe.R
+import com.mariizcal.tictactoe.about.AboutActivity
 import com.mariizcal.tictactoe.data.model.Cell
 import com.mariizcal.tictactoe.data.model.GameState
 import com.mariizcal.tictactoe.data.model.Seed
@@ -43,8 +45,12 @@ class BoardActivity : AppCompatActivity(), BoardPresenter.BoardView {
 
         if (intent.extras != null) {
             when (intent.extras["side"]) {
-                1 -> presenter.selectPlayer(Seed.CROSS)
-                2 -> presenter.selectPlayer(Seed.NOUGHT)
+                1 -> {
+                    presenter.selectPlayer(Seed.CROSS)
+                }
+                2 -> {
+                    presenter.selectPlayer(Seed.NOUGHT)
+                }
                 else -> finish()
             }
         } else {
@@ -253,7 +259,9 @@ class BoardActivity : AppCompatActivity(), BoardPresenter.BoardView {
         })
         restartDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", {
             dialogInterface, which ->
-            //TODO SHOW INFO
+            val intent = Intent(this, AboutActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         })
 
         restartDialog.show()
@@ -270,7 +278,9 @@ class BoardActivity : AppCompatActivity(), BoardPresenter.BoardView {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.info -> Log.d("", "")
+            R.id.about -> {
+                startActivity(Intent(this, AboutActivity::class.java))
+            }
             R.id.restart -> finish()
         }
         return super.onOptionsItemSelected(item)

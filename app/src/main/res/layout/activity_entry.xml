@@ -32,7 +32,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginTop="16dp"
-        android:text="CORSS"
+        android:text="CROSS"
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="22sp"
@@ -58,6 +58,6 @@
         android:gravity="center"
         android:layout_marginTop="16dp"
 
-        android:text="Choose your side!"/>
+        android:text="Choose your side! Cross is always first"/>
 
 </LinearLayout>

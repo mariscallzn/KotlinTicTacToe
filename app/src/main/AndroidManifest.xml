@@ -18,8 +18,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".board.BoardActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".board.BoardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".about.AboutActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

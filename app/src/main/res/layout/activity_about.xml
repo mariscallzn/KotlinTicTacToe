@@ -40,26 +40,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="UN-B TIC TAC TOE is an unbeatable tic tac toe where demonstrates the use of the algorithm minimax. This app is written using kotlin as main language." />
+                android:text="UN-B TIC TAC TOE Un-B tic tac toe is an unbeatable tic tac toe where the implementation of the minimax algorithm is shown. This app is written using kotlin as main language." />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="About Andres Mariscal"
-                android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="I'm a mobile software developer passionate for technologies such as Android and iOS. I've been working for a while in such technologies most of all in android. Motivated for the knowledge and business i love to meet people because you'll never know what surprise you can get."
-                android:textStyle="italic" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="If you have any comments, suggestion, complain or just something to say related to this app or not you can always reach on twitter or Github" />
+                android:text="If you have any comments, suggestion or feedback related to this app or not, you can always reach on twitter or Github or on the social networks listed below. Also take a look to my medium profile, I wrote an article describing the minimax algorithm. \n\n You can find the source available at gihub ." />
 
             <TextView
                 android:layout_width="wrap_content"
